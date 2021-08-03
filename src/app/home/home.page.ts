@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MobileAccessibility } from '@ionic-native/mobile-accessibility/ngx';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,29 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private mobileAccessibility: MobileAccessibility) {
 
+  }
+  ionViewWillEnter() {
+    this.mobileAccessibility.isDarkerSystemColorsEnabled().then(isDarkerSystemColorsEnabled => {
+      alert(`isDarkerSystemColorsEnabled :${isDarkerSystemColorsEnabled}`);
+    }).catch(err => {
+      alert(`Error: ${err}`);
+    });
+    this.mobileAccessibility.isTalkBackRunning().then(isTalkBackRunning => {
+      alert(`isTalkBackRunning :${isTalkBackRunning}`);
+    }).catch(err => {
+      alert(`Error: ${err}`);
+    });
+    this.mobileAccessibility.isClosedCaptioningEnabled().then(isClosedCaptioningEnabled => {
+      alert(`isClosedCaptioningEnabled :${isClosedCaptioningEnabled}`);
+    }).catch(err => {
+      alert(`Error: ${err}`);
+    });
+    this.mobileAccessibility.isInvertColorsEnabled().then(isInvertColorsEnabled => {
+      alert(`isInvertColorsEnabled :${isInvertColorsEnabled}`);
+    }).catch(err => {
+      alert(`Error: ${err}`);
+    });
+  }
 }
